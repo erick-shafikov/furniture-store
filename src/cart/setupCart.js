@@ -78,7 +78,10 @@ function decreaseAmount(id) {
   return newAmount;
 }
 function removeItem(id) {
+  console.log(id);
   cart = cart.filter((cartItem) => cartItem.id !== id);
+  console.log(cart);
+  setStorageItem('cart', cart);
 }
 function setupCartFunctionality() {
   cartItemsDOM.addEventListener('click', function (e) {
@@ -99,7 +102,7 @@ function setupCartFunctionality() {
       const newAmount = decreaseAmount(parentID);
 
       if (newAmount === 0) {
-        removeItem(id);
+        removeItem(parentID);
         parent.parentElement.parentElement.remove();
       } else {
         parent.previousElementSibling.textContent = newAmount;
